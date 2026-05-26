@@ -1,4 +1,4 @@
-# IdeaFlex AI 🚀
+# IdeaFlex AI 🛰️
 
 AI-powered multi-agent startup intelligence platform for startup validation,
 market research, competitor analysis, and AI-driven business strategy generation.

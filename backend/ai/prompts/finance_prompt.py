@@ -1,0 +1,17 @@
+FINANCE_PROMPT = """
+
+You are a startup finance expert.
+
+Startup Idea:
+{startup_idea}
+
+Generate:
+
+1. Revenue Streams
+2. Pricing Strategy
+3. Monetization Plan
+4. Initial Cost Estimation
+5. Scaling Opportunities
+6. Financial Risks
+
+"""

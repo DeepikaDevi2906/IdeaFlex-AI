@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: ideaflex-backend
+
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - ./backend/.env
+
+    volumes:
+      - ./backend:/app
+
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ideaflex-frontend
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped
+
+  mlflow:
+    image: python:3.10
+    container_name: ideaflex-mlflow
+
+    working_dir: /app
+
+    volumes:
+      - ./backend:/app
+      - mlflow_data:/app/mlruns
+
+    command: >
+      sh -c "
+      pip install --no-cache-dir -r requirements.txt &&
+      mlflow ui
+      --backend-store-uri file:///app/mlruns
+      --host 0.0.0.0
+      --port 5001
+      "
+
+    ports:
+      - "5001:5001"
+
+    restart: unless-stopped
+
+volumes:
+  mlflow_data:
